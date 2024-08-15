@@ -19,12 +19,17 @@ namespace tabuleiro
             this.cor = cor;
             this.qteMovimentos = 0;
             this.tab = tab;
-        }        
+        }
 
-        public void incrementarQteMovimentos() 
+        public void incrementarQteMovimentos()
         {
             qteMovimentos++;
 
+        }
+
+        public void decrementarQteMovimentos()
+        {
+            qteMovimentos--;
         }
 
         public bool existeMovimentosPossiveis()
@@ -43,12 +48,12 @@ namespace tabuleiro
             return false;
         }
 
-        public bool podeMoverPara(Posicao pos)
+        public bool movimentoPossivel(Posicao pos)
         {
             return movimentosPossiveis()[pos.linha, pos.coluna];
         }
 
         public abstract bool[,] movimentosPossiveis();
-        
+
     }
 }
