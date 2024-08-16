@@ -98,6 +98,21 @@ namespace xadrez
                 throw new TabuleiroException("Você não pode se colocar em xeque!");
             }
 
+            // Jogada especial Promoção
+            Peca p = tab.peca(destino);
+
+            if (p is Peao)
+            {
+                if ((p.cor == Cor.Branca && destino.linha == 0) || (p.cor == Cor.Preta && destino.linha == 7))
+                {
+                    p = tab.removerPeca(destino);
+                    pecas.Remove(p);
+                    Peca dama = new Dama(tab, p.cor);
+                    tab.colocarPeca(dama,destino);
+                    pecas.Add(dama);
+                }
+            }
+
             if (estaEmXeque(adversario(jogadorAtual)))
             {
                 xeque = true;
